@@ -1,0 +1,104 @@
+{
+  "strarray": [
+    {
+      "name": "tick_below_text_length_5",
+      "value": [
+        {
+          "value": "one"
+        },
+        {
+          "value": "two"
+        },
+        {
+          "value": "three"
+        },
+        {
+          "value": "four"
+        },
+        {
+          "value": "five"
+        }
+      ]
+    },
+    {
+      "name" : "last_next_length_5",
+      "value": [
+        {
+          "value": "last"
+        },
+        {
+          "value": ""
+        },
+        {
+          "value": ""
+        },
+        {
+          "value": ""
+        },
+        {
+          "value": "next"
+        }
+      ]
+    },
+    {
+      "name": "small_normal_middle_large_length_7",
+      "value": [
+        {
+          "value":"small"
+        },
+        {
+          "value": ""
+        },
+        {
+          "value":"normal"
+        },
+        {
+          "value": ""
+        },
+        {
+          "value":"middle"
+        },
+        {
+          "value": ""
+        },
+        {
+          "value":"large"
+        }
+      ]
+    },
+    {
+      "name": "irregular_length_6",
+      "value": [
+        {
+          "value":"small"
+        },
+        {
+          "value": ""
+        },
+        {
+          "value":"normal"
+        },
+        {
+          "value": ""
+        },
+        {
+          "value":"middle"
+        },
+        {
+          "value":"large"
+        }
+      ]
+    },
+    {
+      "name" : "last_next_length_2",
+      "value": [
+        {
+          "value": "last"
+        },
+        {
+          "value": "next"
+        }
+      ]
+    }
+  ]
+}

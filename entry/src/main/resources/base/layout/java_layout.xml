@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent">
+
+    <DirectionalLayout
+        ohos:id="$+id:java_build"
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:orientation="vertical">
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:text="Java_Build"
+            ohos:multiple_lines="true"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"/>
+
+    </DirectionalLayout>
+
+</ScrollView>
+
+
+

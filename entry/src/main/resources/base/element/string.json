@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "TickSeekBar"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "progress_text",
+      "value": "progress: "
+    },
+    {
+      "name": "progress_float_text",
+      "value": "progress_float: "
+    },
+    {
+      "name": "from_user_text",
+      "value": "from_user: "
+    },
+    {
+      "name": "states_text",
+      "value": "states: "
+    },
+    {
+      "name": "thumb_position_text",
+      "value": "thumbPosition: "
+    },
+    {
+    "name": "tick_text",
+    "value": "tickText: "
+    },
+    {
+      "name": "on_seeking",
+      "value": "onSeeking"
+    },
+    {
+      "name": "on_start",
+      "value": "onStart"
+    },
+    {
+      "name": "on_stop",
+      "value": "onStop"
+    }
+  ]
+}

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    xmlns:app="http://schemas.huawei.com/hap/res-auto"
+    ohos:height="match_parent"
+    ohos:width="match_parent">
+
+    <DirectionalLayout
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:orientation="vertical">
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:text="1.default, progress = 50"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"
+            />
+
+        <com.warkiz.tickseekbar.TickSeekBar
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            app:tsb_progress="50"/>
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:text="2. show_indicator=rounded_rectangle"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"
+            />
+
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:text="11. continuous listener"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"
+            />
+
+
+        <Text
+            ohos:id="$+id:states"
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:left_margin="16fp"
+            ohos:text_color="#666666"
+            ohos:text_size="13vp"/>
+
+        <Text
+            ohos:id="$+id:progress"
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:left_margin="16fp"
+            ohos:text_color="#666666"
+            ohos:text_size="13vp"/>
+
+        <Text
+            ohos:id="$+id:progress_float"
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:left_margin="16fp"
+            ohos:text_color="#666666"
+            ohos:text_size="13vp"/>
+
+        <Text
+            ohos:id="$+id:from_user"
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:left_margin="16fp"
+            ohos:text_color="#666666"
+            ohos:text_size="13vp"/>
+
+        <com.warkiz.tickseekbar.TickSeekBar
+            ohos:id="$+id:listener"
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            app:tsb_progress="76"/>
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:multiple_lines="true"
+            ohos:text="3. show_thumb_text=above\r track_progress_color=$color/color_blue
+             \n thumb_color=$color/color_blue \n thumb_text_color=$color/color_pink"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"
+            />
+
+        <com.warkiz.tickseekbar.TickSeekBar
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            app:tsb_progress="88"
+            app:tsb_show_thumb_text="above"
+            app:TSB_THUMB_COLOR="$color:color_blue"
+            app:tsb_thumb_text_color="$color:color_pink"
+            app:tsb_track_progress_color="$color:color_blue" />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:multiple_lines="true"
+            ohos:text="4. show_thumb_text=below , \n track_background_color=$color/color_pink \n progress_value_float=true \n setDecimalScale"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"
+            />
+
+
+        <com.warkiz.tickseekbar.TickSeekBar
+            ohos:id="$+id:scale"
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            app:tsb_progress="23.4323"
+            app:tsb_progress_value_float="true"
+            app:tsb_show_thumb_text="below"
+            app:tsb_track_background_color="$color:color_pink"/>
+
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:multiple_lines="true"
+            ohos:text="5. ticks_count=2,show_tick_texts=above,
+             tick_texts_color=@color:color_gray
+             \n indicator_color=@color:color_blue"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"
+            />
+
+        <com.warkiz.tickseekbar.TickSeekBar
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            app:tsb_progress="76"
+            app:tsb_show_tick_texts="above"
+            app:tsb_tick_texts_color="$color:color_gray"
+            app:tsb_ticks_count="2" />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:multiple_lines="true"
+            ohos:text="6. show_tick_texts=below, show_indicator=circular_bubble"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"
+            />
+
+        <com.warkiz.tickseekbar.TickSeekBar
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            app:tsb_progress="56"
+            app:tsb_show_tick_texts="below"
+            app:tsb_ticks_count="2" />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:multiple_lines="true"
+            ohos:text="7. tick_texts_array=@strarray/last_next_length_2,\n show_thumb_text=below,\n tick_texts_color=@color/color_gray"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"
+            />
+
+        <com.warkiz.tickseekbar.TickSeekBar
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            app:tsb_progress="34"
+            app:tsb_show_thumb_text="below"
+            app:tsb_show_tick_texts="above"
+            app:tsb_tick_texts_array="$strarray:last_next_length_2"
+            app:tsb_tick_texts_color="$color:color_gray"
+            app:tsb_ticks_count="2" />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:multiple_lines="true"
+            ohos:text="8. tick_texts_array=@array/last_next_length_2"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"
+            />
+
+        <com.warkiz.tickseekbar.TickSeekBar
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            app:tsb_progress="34"
+            app:tsb_show_tick_texts="below"
+            app:tsb_tick_texts_array="$strarray:last_next_length_2"
+            app:tsb_ticks_count="2" />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:multiple_lines="true"
+            ohos:text="9. custom the size/color for track/thumb/indicator/indicatorText/tickText"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"
+            />
+
+        <com.warkiz.tickseekbar.TickSeekBar
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            app:tsb_progress="25"
+            app:tsb_show_tick_texts="below"
+            app:tsb_thumb_color="$color:color_green"
+            app:tsb_thumb_size="20vp"
+            app:tsb_tick_texts_color="$color:color_blue"
+            app:tsb_tick_texts_size="15fp"
+            app:tsb_ticks_count="2"
+            app:tsb_track_background_color="$color:color_gray"
+            app:tsb_track_background_size="2vp"
+            app:tsb_track_progress_color="$color:color_blue"
+            app:tsb_track_progress_size="4vp" />
+    </DirectionalLayout>
+</ScrollView>

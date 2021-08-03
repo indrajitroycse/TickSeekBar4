@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    xmlns:app="http://schemas.huawei.com/hap/res-auto"
+    ohos:height="match_parent"
+    ohos:width="match_parent">
+
+    <DirectionalLayout
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:orientation="vertical">
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:text="Discrete"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"/>
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:text="1. ticks_count=5,show_tick_marks_type=none"
+            ohos:multiple_lines="true"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"/>
+
+        <com.warkiz.tickseekbar.TickSeekBar
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            app:tsb_progress="25"
+            app:tsb_ticks_count="5" />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:text="2. ticks_count=5, show_tick_marks_type=oval \n show_tick_texts= above"
+            ohos:multiple_lines="true"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"/>
+
+        <com.warkiz.tickseekbar.TickSeekBar
+            ohos:id="$+id:custom_text"
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            app:tsb_show_tick_marks_type="oval"
+            app:tsb_show_tick_texts="above"
+            app:tsb_ticks_count="5" />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:text="3. show_tick_marks_type=divider"
+            ohos:multiple_lines="true"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"/>
+
+        <com.warkiz.tickseekbar.TickSeekBar
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            app:tsb_progress="25"
+            app:tsb_show_tick_marks_type="divider"
+            app:tsb_tick_marks_color="#ffffff"
+            app:tsb_ticks_count="5"
+            app:tsb_track_background_size="3vp"
+            app:tsb_track_progress_size="3vp" />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:text="4. show_tick_marks_type=square"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"/>
+
+        <com.warkiz.tickseekbar.TickSeekBar
+           ohos:id="$+id:custom_section_color"
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            app:tsb_progress="25"
+            app:tsb_show_tick_marks_type="square"
+            app:tsb_ticks_count="5"
+            app:tsb_track_background_size="3vp"
+            app:tsb_track_progress_size="3vp" />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:text="5. tick_marks_drawable=$media:ic_launcher"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"/>
+
+        <com.warkiz.tickseekbar.TickSeekBar
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            app:tsb_progress="25"
+            app:tsb_tick_marks_drawable="$media:ic_launcher"
+            app:tsb_tick_marks_size="12vp"
+            app:tsb_ticks_count="5" />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:text="6. show_tick_texts=above"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"/>
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:id="$+id:states"
+            ohos:left_margin="16fp"
+            ohos:text_color="#666666"
+            ohos:text_size="13vp"
+             />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:id="$+id:progress"
+            ohos:left_margin="16fp"
+            ohos:text_color="#666666"
+            ohos:text_size="13vp"
+            />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:id="$+id:progress_float"
+            ohos:left_margin="16fp"
+            ohos:text_color="#666666"
+            ohos:text_size="13vp"
+             />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:id="$+id:from_user"
+            ohos:left_margin="16fp"
+            ohos:text_color="#666666"
+            ohos:text_size="13vp"
+             />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:id="$+id:thumb_position"
+            ohos:left_margin="16fp"
+            ohos:text_color="#666666"
+            ohos:text_size="13vp"
+            />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:id="$+id:tick_text"
+            ohos:left_margin="16fp"
+            ohos:text_color="#666666"
+            ohos:text_size="13vp"
+             />
+
+        <com.warkiz.tickseekbar.TickSeekBar
+            ohos:id="$+id:listener"
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            app:tsb_show_tick_marks_type="oval"
+            app:tsb_show_tick_texts="above"
+            app:tsb_thumb_color="$color:colorAccent"
+            app:tsb_thumb_size="16vp"
+            app:tsb_tick_marks_color="$color:colorAccent"
+            app:tsb_tick_marks_size="8vp"
+            app:tsb_tick_texts_color="$color:color_pink"
+            app:tsb_tick_texts_size="13vp"
+            app:tsb_ticks_count="5"
+            app:tsb_track_background_color="$color:color_gray"
+            app:tsb_track_background_size="2vp"
+            app:tsb_track_progress_color="$color:color_blue"
+            app:tsb_track_progress_size="3vp" />
+
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:text="7. show_tick_texts=below, setTickMarksDrawable"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"/>
+
+        <com.warkiz.tickseekbar.TickSeekBar
+            ohos:id="$+id:tick_drawable"
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            app:tsb_show_tick_marks_type="oval"
+            app:tsb_show_tick_texts="below"
+            app:tsb_ticks_count="5" />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:text="8. show_tick_texts=below, tick_texts_array=$strarray:last_next_length_5 \n r2l = true"
+            ohos:multiple_lines="true"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"/>
+
+        <com.warkiz.tickseekbar.TickSeekBar
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            app:tsb_progress="45"
+            app:tsb_r2l="true"
+            app:tsb_show_tick_marks_type="oval"
+            app:tsb_show_tick_texts="below"
+            app:tsb_tick_texts_array="$strarray:last_next_length_5"
+            app:tsb_ticks_count="5" />
+
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:text="9. show_tick_texts=above, tick_texts_array=$strarray:last_next_length_5 \n seek_smoothly=true"
+            ohos:multiple_lines="true"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"/>
+
+        <com.warkiz.tickseekbar.TickSeekBar
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            app:tsb_seek_smoothly="true"
+            app:tsb_show_tick_marks_type="oval"
+            app:tsb_show_tick_texts="above"
+            app:tsb_tick_texts_array="$strarray:last_next_length_5"
+            app:tsb_ticks_count="5" />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:text="10. thumbAutoAdjust = false"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"/>
+
+        <com.warkiz.tickseekbar.TickSeekBar
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            app:tsb_seek_smoothly="true"
+            app:tsb_show_tick_marks_type="oval"
+            app:tsb_show_tick_texts="above"
+            app:tsb_thumb_adjust_auto="false"
+            app:tsb_tick_texts_array="$strarray:last_next_length_5"
+            app:tsb_ticks_count="5" />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:text="11. show_tick_texts=below, r2l=true"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"/>
+
+        <com.warkiz.tickseekbar.TickSeekBar
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            app:tsb_progress="50"
+            app:tsb_r2l="true"
+            app:tsb_show_tick_marks_type="divider"
+            app:tsb_show_tick_texts="below"
+            app:tsb_ticks_count="7" />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:text="12. show_tick_texts=above, tick_texts_array=$strarray:irregular_length_6"
+            ohos:multiple_lines="true"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"/>
+
+        <com.warkiz.tickseekbar.TickSeekBar
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            app:tsb_show_tick_marks_type="divider"
+            app:tsb_show_tick_texts="above"
+            app:tsb_tick_texts_array="$strarray:irregular_length_6"
+            app:tsb_tick_texts_color="$color:color_blue"
+            app:tsb_ticks_count="7" />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:text="13. show_tick_texts=below, tick_texts_array=$strarray:tick_below_text_length_5"
+            ohos:multiple_lines="true"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"/>
+
+        <com.warkiz.tickseekbar.TickSeekBar
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            app:tsb_show_tick_marks_type="oval"
+            app:tsb_show_tick_texts="below"
+            app:tsb_tick_texts_array="$strarray:tick_below_text_length_5"
+            app:tsb_ticks_count="5" />
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:bottom_margin="10fp"
+            ohos:left_margin="16fp"
+            ohos:text="14. show_tick_texts=above, tick_texts_array=@array/tick_below_text_length_5"
+            ohos:multiple_lines="true"
+            ohos:text_color="#555555"
+            ohos:text_size="13vp"
+            ohos:top_margin="16fp"/>
+
+        <com.warkiz.tickseekbar.TickSeekBar
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            app:tsb_show_tick_marks_type="oval"
+            app:tsb_show_tick_texts="above"
+            app:tsb_tick_texts_array="$strarray:tick_below_text_length_5"
+            app:tsb_ticks_count="5" />
+
+        <!--<include layout="@layout/source_code_link" />-->
+
+    </DirectionalLayout>
+
+</ScrollView>
+
