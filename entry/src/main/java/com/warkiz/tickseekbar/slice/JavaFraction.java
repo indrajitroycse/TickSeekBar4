@@ -13,7 +13,6 @@ import ohos.agp.utils.Color;
 import ohos.app.Context;
 import ohos.global.resource.NotExistException;
 import ohos.global.resource.WrongTypeException;
-import java.io.IOException;
 import com.warkiz.tickseekbar.ResourceTable;
 import com.warkiz.tickseekbar.TextPosition;
 import com.warkiz.tickseekbar.TickMarkType;
@@ -21,6 +20,7 @@ import com.warkiz.tickseekbar.TickSeekBar;
 import com.warkiz.tickseekbar.utils.LogUtil;
 import com.warkiz.tickseekbar.utils.StateElementUtil;
 import com.warkiz.tickseekbar.utils.TickSeekBarConstants;
+import java.io.IOException;
 
 /**
  * Java Fraction to display Java TickSeekBar.

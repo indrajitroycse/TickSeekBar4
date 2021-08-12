@@ -57,6 +57,7 @@ public class PixelMapUtil {
      */
     public static Optional<PixelMap> preparePixelMap(Resource resource, int drawableHieght) throws IOException {
         byte[] bytes = null;
+        PixelMap decodePixelMap = null;
         try {
             if (resource != null) {
                 bytes = readBytes(resource);
@@ -75,14 +76,11 @@ public class PixelMapUtil {
             decodingOpts.desiredSize = new Size(drawableHieght, drawableHieght);
             decodingOpts.desiredRegion = new ohos.media.image.common.Rect(0, 0, 0, 0);
             decodingOpts.desiredPixelFormat = PixelFormat.ARGB_8888;
-            PixelMap decodePixelMap = null;
             if (imageSource != null) {
                 decodePixelMap = imageSource.createPixelmap(decodingOpts);
             }
-            return Optional.ofNullable(decodePixelMap);
         }
-        LogUtil.error(TAG, "get pixelmap failed, read resource bytes is null");
-        return Optional.empty();
+        return Optional.ofNullable(decodePixelMap);
     }
 
     private static byte[] readBytes(Resource resource) {
