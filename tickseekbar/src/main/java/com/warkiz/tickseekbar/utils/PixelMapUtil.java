@@ -56,25 +56,25 @@ public class PixelMapUtil {
      * @throws IOException IO Exception
      */
     public static Optional<PixelMap> preparePixelMap(Resource resource, int drawableHieght) throws IOException {
-        byte[] bytes = null;
+        byte[] bytes;
         PixelMap decodePixelMap = null;
         try {
             if (resource != null) {
                 bytes = readBytes(resource);
                 resource.close();
-            }
-            if (bytes != null) {
-                ImageSource.SourceOptions srcOpts = new ImageSource.SourceOptions();
-                ImageSource imageSource = ImageSource.create(bytes, srcOpts);
-                if (imageSource == null) {
-                    LogUtil.error(TAG, "get pixelmap failed, image source is null");
-                }
-                ImageSource.DecodingOptions decodingOpts = new ImageSource.DecodingOptions();
-                decodingOpts.desiredSize = new Size(drawableHieght, drawableHieght);
-                decodingOpts.desiredRegion = new ohos.media.image.common.Rect(0, 0, 0, 0);
-                decodingOpts.desiredPixelFormat = PixelFormat.ARGB_8888;
-                if (imageSource != null) {
-                    decodePixelMap = imageSource.createPixelmap(decodingOpts);
+                if (bytes != null) {
+                    ImageSource.SourceOptions srcOpts = new ImageSource.SourceOptions();
+                    ImageSource imageSource = ImageSource.create(bytes, srcOpts);
+                    if (imageSource == null) {
+                        LogUtil.error(TAG, "get pixelmap failed, image source is null");
+                    }
+                    ImageSource.DecodingOptions decodingOpts = new ImageSource.DecodingOptions();
+                    decodingOpts.desiredSize = new Size(drawableHieght, drawableHieght);
+                    decodingOpts.desiredRegion = new ohos.media.image.common.Rect(0, 0, 0, 0);
+                    decodingOpts.desiredPixelFormat = PixelFormat.ARGB_8888;
+                    if (imageSource != null) {
+                        decodePixelMap = imageSource.createPixelmap(decodingOpts);
+                    }
                 }
             }
         } catch (IOException e) {
