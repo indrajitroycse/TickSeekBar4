@@ -150,8 +150,6 @@
             app:tsb_thumb_size="18vp"
             app:tsb_ticks_count="6" />
 
-        <!-- <include layout="@layout/source_code_link" />-->
-
     </DirectionalLayout>
 
 </ScrollView>

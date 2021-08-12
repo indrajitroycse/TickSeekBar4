@@ -7,9 +7,6 @@ import com.warkiz.tickseekbar.TickSeekBar;
 import com.warkiz.tickseekbar.utils.LogUtil;
 import com.warkiz.tickseekbar.utils.StateElementUtil;
 import com.warkiz.tickseekbar.utils.TickSeekBarConstants;
-
-import java.io.IOException;
-
 import ohos.aafwk.ability.fraction.Fraction;
 import ohos.aafwk.content.Intent;
 import ohos.agp.components.AttrHelper;
@@ -23,6 +20,7 @@ import ohos.agp.utils.Color;
 import ohos.app.Context;
 import ohos.global.resource.NotExistException;
 import ohos.global.resource.WrongTypeException;
+import java.io.IOException;
 
 /**
  * Java Fraction to display Java TickSeekBar.
@@ -51,7 +49,8 @@ public class JavaFraction extends Fraction {
 
     @Override
     public Component getComponent() {
-        Component component = LayoutBoost.inflate(this.mContext, ResourceTable.Layout_java_layout, this.mComponentContainer, false);
+        Component component = LayoutBoost.inflate(this.mContext, ResourceTable.Layout_java_layout,
+                this.mComponentContainer, false);
         initView(component);
         return component;
     }
@@ -102,12 +101,15 @@ public class JavaFraction extends Fraction {
                     .progress(TickSeekBarConstants.CUSTOM_PROGRESS_VALUE)
                     .thumbColorStateList(StateElementUtil.initThumbColorState(mContext))
                     .thumbSize(TickSeekBarConstants.CUSTOM_THUMB_SIZE)
-                    .trackProgressColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_colorAccent).getColor()))
+                    .trackProgressColor(new Color(mContext.getResourceManager()
+                            .getElement(ResourceTable.Color_colorAccent).getColor()))
                     .trackProgressSize(TickSeekBarConstants.CUSTOM_TRACK_PROGRESS_SIZE)
-                    .trackBackgroundColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_color_gray).getColor()))
+                    .trackBackgroundColor(new Color(mContext.getResourceManager()
+                            .getElement(ResourceTable.Color_color_gray).getColor()))
                     .trackBackgroundSize(2)
                     .thumbTextPosition(TextPosition.BELOW)
-                    .thumbTextColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_color_gray).getColor()))
+                    .thumbTextColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_color_gray)
+                            .getColor()))
                     .build();
         } catch (IOException | NotExistException | WrongTypeException e) {
             LogUtil.error(TAG, e.getMessage());
@@ -131,9 +133,11 @@ public class JavaFraction extends Fraction {
                     .showTickTextsPosition(TextPosition.ABOVE)
                     .thumbDrawableStateList(StateElementUtil.initThumbDrawableState(mContext))
                     .thumbSize(TickSeekBarConstants.CONTINUOUS_TEXTS_ENDS_THUMB_SIZE)
-                    .trackProgressColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_colorAccent).getColor()))
+                    .trackProgressColor(new Color(mContext.getResourceManager()
+                            .getElement(ResourceTable.Color_colorAccent).getColor()))
                     .trackProgressSize(TickSeekBarConstants.CUSTOM_TRACK_PROGRESS_SIZE)
-                    .trackBackgroundColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_color_gray).getColor()))
+                    .trackBackgroundColor(new Color(mContext.getResourceManager()
+                            .getElement(ResourceTable.Color_color_gray).getColor()))
                     .trackBackgroundSize(2)
                     .build();
         } catch (IOException | NotExistException | WrongTypeException e) {
@@ -156,11 +160,14 @@ public class JavaFraction extends Fraction {
                     .tickCount(2)
                     .showTickMarksType(TickMarkType.NONE)
                     .showTickTextsPosition(TextPosition.ABOVE)
-//                    .thumbDrawable(mContext.getResourceManager().getElement(ResourceTable.Graphic_selector_thumb_ripple_drawable))
+                    //.thumbDrawable(mContext.getResourceManager()
+                    //.getElement(ResourceTable.Graphic_selector_thumb_ripple_drawable))
                     .thumbSize(TickSeekBarConstants.CONTINUOUS_TEXTS_ENDS_CUSTOM_THUMB_SIZE)
-                    .trackProgressColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_colorAccent).getColor()))
+                    .trackProgressColor(new Color(mContext.getResourceManager()
+                            .getElement(ResourceTable.Color_colorAccent).getColor()))
                     .trackProgressSize(TickSeekBarConstants.CUSTOM_TRACK_PROGRESS_SIZE)
-                    .trackBackgroundColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_color_gray).getColor()))
+                    .trackBackgroundColor(new Color(mContext.getResourceManager()
+                            .getElement(ResourceTable.Color_color_gray).getColor()))
                     .trackBackgroundSize(2)
                     .build();
         } catch (IOException | NotExistException | WrongTypeException e) {
@@ -183,12 +190,16 @@ public class JavaFraction extends Fraction {
                     .tickCount(2)
                     .showTickMarksType(TickMarkType.NONE)
                     .showTickTextsPosition(TextPosition.ABOVE)
-                    .tickTextsArray(mContext.getResourceManager().getElement(ResourceTable.Strarray_last_next_length_2).getStringArray())
-                    .thumbColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_color_1).getColor()))
+                    .tickTextsArray(mContext.getResourceManager().getElement(ResourceTable.Strarray_last_next_length_2)
+                            .getStringArray())
+                    .thumbColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_color_1)
+                            .getColor()))
                     .thumbSize(TickSeekBarConstants.CUSTOM_THUMB_SIZE)
-                    .trackProgressColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_colorAccent).getColor()))
+                    .trackProgressColor(new Color(mContext.getResourceManager()
+                            .getElement(ResourceTable.Color_colorAccent).getColor()))
                     .trackProgressSize(TickSeekBarConstants.CUSTOM_TRACK_PROGRESS_SIZE)
-                    .trackBackgroundColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_color_gray).getColor()))
+                    .trackBackgroundColor(new Color(mContext.getResourceManager()
+                            .getElement(ResourceTable.Color_color_gray).getColor()))
                     .trackBackgroundSize(2)
                     .build();
         } catch (IOException | NotExistException | WrongTypeException e) {
@@ -210,12 +221,16 @@ public class JavaFraction extends Fraction {
                     .progress(TickSeekBarConstants.CUSTOM_PROGRESS_VALUE)
                     .tickCount(TickSeekBarConstants.CUSTOM_TICK_COUNT)
                     .tickMarksSize(TickSeekBarConstants.CUSTOM_TICK_MARKS_SIZE)
-                    .tickMarksDrawable(mContext.getResourceManager().getElement(ResourceTable.Graphic_selector_tick_marks_drawable))
-                    .thumbColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_color_1).getColor()))
+                    .tickMarksDrawable(mContext.getResourceManager()
+                            .getElement(ResourceTable.Graphic_selector_tick_marks_drawable))
+                    .thumbColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_color_1)
+                            .getColor()))
                     .thumbSize(TickSeekBarConstants.CUSTOM_THUMB_SIZE)
-                    .trackProgressColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_colorAccent).getColor()))
+                    .trackProgressColor(new Color(mContext.getResourceManager()
+                            .getElement(ResourceTable.Color_colorAccent).getColor()))
                     .trackProgressSize(TickSeekBarConstants.CUSTOM_TRACK_PROGRESS_SIZE)
-                    .trackBackgroundColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_color_gray).getColor()))
+                    .trackBackgroundColor(new Color(mContext.getResourceManager()
+                            .getElement(ResourceTable.Color_color_gray).getColor()))
                     .trackBackgroundSize(2)
                     .build();
         } catch (IOException | NotExistException | WrongTypeException e) {
@@ -242,12 +257,16 @@ public class JavaFraction extends Fraction {
                     .tickMarksSize(TickSeekBarConstants.CUSTOM_DISCRETE_TICK_MARKS_SIZE)
                     .tickTextsSize(TickSeekBarConstants.CUSTOM_TICK_TEXTS_SIZE)
                     .showTickTextsPosition(TextPosition.ABOVE)
-                    .tickTextsColorStateList(StateElementUtil.initTickTextColorState(TickSeekBarConstants.INDEX_VALUE_THREE))
-                    .thumbColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_color_1).getColor()))
+                    .tickTextsColorStateList(StateElementUtil.initTickTextColorState
+                            (TickSeekBarConstants.INDEX_VALUE_THREE))
+                    .thumbColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_color_1)
+                            .getColor()))
                     .thumbSize(TickSeekBarConstants.CUSTOM_THUMB_SIZE)
-                    .trackProgressColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_colorAccent).getColor()))
+                    .trackProgressColor(new Color(mContext.getResourceManager()
+                            .getElement(ResourceTable.Color_colorAccent).getColor()))
                     .trackProgressSize(TickSeekBarConstants.CUSTOM_TRACK_PROGRESS_SIZE)
-                    .trackBackgroundColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_color_gray).getColor()))
+                    .trackBackgroundColor(new Color(mContext.getResourceManager()
+                            .getElement(ResourceTable.Color_color_gray).getColor()))
                     .trackBackgroundSize(2)
                     .build();
         } catch (IOException | NotExistException | WrongTypeException e) {
@@ -273,11 +292,14 @@ public class JavaFraction extends Fraction {
                     .tickTextsArray(array)
                     .showTickTextsPosition(TextPosition.ABOVE)
                     .tickTextsColorStateList(StateElementUtil.initTickTextColorState(2))
-                    .thumbColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_color_1).getColor()))
+                    .thumbColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_color_1)
+                            .getColor()))
                     .thumbSize(TickSeekBarConstants.CUSTOM_THUMB_SIZE)
-                    .trackProgressColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_colorAccent).getColor()))
+                    .trackProgressColor(new Color(mContext.getResourceManager()
+                            .getElement(ResourceTable.Color_colorAccent).getColor()))
                     .trackProgressSize(TickSeekBarConstants.CUSTOM_TRACK_PROGRESS_SIZE)
-                    .trackBackgroundColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_color_gray).getColor()))
+                    .trackBackgroundColor(new Color(mContext.getResourceManager()
+                            .getElement(ResourceTable.Color_color_gray).getColor()))
                     .trackBackgroundSize(2)
                     .build();
         } catch (IOException | NotExistException | WrongTypeException e) {
@@ -303,11 +325,14 @@ public class JavaFraction extends Fraction {
                     .tickMarksColorState(StateElementUtil.initTickMarksColorState(mContext))
                     .tickTextsArray(arrayEnds)
                     .showTickTextsPosition(TextPosition.BELOW)
-                    .thumbColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_color_red).getColor()))
+                    .thumbColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_color_red)
+                            .getColor()))
                     .thumbSize(TickSeekBarConstants.CUSTOM_THUMB_SIZE)
-                    .trackProgressColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_color_blue).getColor()))
+                    .trackProgressColor(new Color(mContext.getResourceManager()
+                            .getElement(ResourceTable.Color_color_blue).getColor()))
                     .trackProgressSize(TickSeekBarConstants.CUSTOM_TRACK_PROGRESS_SIZE)
-                    .trackBackgroundColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_color_pink).getColor()))
+                    .trackBackgroundColor(new Color(mContext.getResourceManager()
+                            .getElement(ResourceTable.Color_color_pink).getColor()))
                     .trackBackgroundSize(2)
                     .build();
         } catch (IOException | NotExistException | WrongTypeException e) {

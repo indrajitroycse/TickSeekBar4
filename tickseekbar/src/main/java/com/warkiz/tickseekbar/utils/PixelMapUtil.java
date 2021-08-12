@@ -66,24 +66,24 @@ public class PixelMapUtil {
             LogUtil.error(TAG, "get pixelmap failed, read resource bytes failed");
             return Optional.empty();
         }
-        if (bytes == null) {
-            LogUtil.error(TAG, "get pixelmap failed, read resource bytes is null");
-            return Optional.empty();
+        if (bytes != null) {
+            ImageSource.SourceOptions srcOpts = new ImageSource.SourceOptions();
+            ImageSource imageSource = ImageSource.create(bytes, srcOpts);
+            if (imageSource == null) {
+                LogUtil.error(TAG, "get pixelmap failed, image source is null");
+            }
+            ImageSource.DecodingOptions decodingOpts = new ImageSource.DecodingOptions();
+            decodingOpts.desiredSize = new Size(drawableHieght, drawableHieght);
+            decodingOpts.desiredRegion = new ohos.media.image.common.Rect(0, 0, 0, 0);
+            decodingOpts.desiredPixelFormat = PixelFormat.ARGB_8888;
+            PixelMap decodePixelMap = null;
+            if (imageSource != null) {
+                decodePixelMap = imageSource.createPixelmap(decodingOpts);
+            }
+            return Optional.ofNullable(decodePixelMap);
         }
-        ImageSource.SourceOptions srcOpts = new ImageSource.SourceOptions();
-        ImageSource imageSource = ImageSource.create(bytes, srcOpts);
-        if (imageSource == null) {
-            LogUtil.error(TAG, "get pixelmap failed, image source is null");
-        }
-        ImageSource.DecodingOptions decodingOpts = new ImageSource.DecodingOptions();
-        decodingOpts.desiredSize = new Size(drawableHieght, drawableHieght);
-        decodingOpts.desiredRegion = new ohos.media.image.common.Rect(0, 0, 0, 0);
-        decodingOpts.desiredPixelFormat = PixelFormat.ARGB_8888;
-        PixelMap decodePixelMap = null;
-        if (imageSource != null) {
-            decodePixelMap = imageSource.createPixelmap(decodingOpts);
-        }
-        return Optional.ofNullable(decodePixelMap);
+        LogUtil.error(TAG, "get pixelmap failed, read resource bytes is null");
+        return Optional.empty();
     }
 
     private static byte[] readBytes(Resource resource) {

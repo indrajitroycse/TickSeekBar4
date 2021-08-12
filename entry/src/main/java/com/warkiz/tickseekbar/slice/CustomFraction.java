@@ -1,6 +1,5 @@
 package com.warkiz.tickseekbar.slice;
 
-import com.warkiz.tickseekbar.ResourceTable;
 import ohos.aafwk.ability.fraction.Fraction;
 import ohos.aafwk.content.Intent;
 import ohos.agp.components.Component;
@@ -8,6 +7,7 @@ import ohos.agp.components.ComponentContainer;
 import ohos.agp.components.LayoutScatter;
 import ohos.agp.render.layoutboost.LayoutBoost;
 import ohos.app.Context;
+import com.warkiz.tickseekbar.ResourceTable;
 
 /**
  * Custom Fraction to display Custom TickSeekBar.

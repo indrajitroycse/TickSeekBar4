@@ -1,8 +1,8 @@
 package com.warkiz.tickseekbar;
 
-import com.warkiz.tickseekbar.slice.MainAbilitySlice;
 import ohos.aafwk.ability.fraction.FractionAbility;
 import ohos.aafwk.content.Intent;
+import com.warkiz.tickseekbar.slice.MainAbilitySlice;
 
 /**
  * Main Ability to display TickSeekBar.

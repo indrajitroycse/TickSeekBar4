@@ -274,11 +274,13 @@ public class TickSeekBar extends Component implements Component.DrawTask, Compon
         super.setEstimatedSize(widthMeasureSpec, heightMeasureSpec);
         int height = Math.round(mCustomDrawableMaxHeight + getPaddingTop() + getPaddingBottom());
         if (isAboveBelowText()) {
-            setEstimatedSize(SizeUtils.resolveDimension(SizeUtils.dp2px(mContext, TickSeekBarConstants.DENSITY_PIXEL_VALUE),
-                    widthMeasureSpec), height + 2 * mTickTextsHeight);
+            setEstimatedSize(SizeUtils.resolveDimension(SizeUtils.dp2px(mContext,
+                    TickSeekBarConstants.DENSITY_PIXEL_VALUE), widthMeasureSpec), height
+                    + 2 * mTickTextsHeight);
         } else {
-            setEstimatedSize(SizeUtils.resolveDimension(SizeUtils.dp2px(mContext, TickSeekBarConstants.DENSITY_PIXEL_VALUE),
-                    widthMeasureSpec), height + mTickTextsHeight);
+            setEstimatedSize(SizeUtils.resolveDimension(SizeUtils.dp2px(mContext,
+                    TickSeekBarConstants.DENSITY_PIXEL_VALUE), widthMeasureSpec), height
+                    + mTickTextsHeight);
         }
         initSeekBarInfo();
         refreshSeekBarLocation();
@@ -315,39 +317,62 @@ public class TickSeekBar extends Component implements Component.DrawTask, Compon
         setThumbTextColor(builder.thumbTextColor);
 
         //seekBar
-        mMax = (attrs.getAttr(TSB_MAX).isPresent() ? attrs.getAttr(TSB_MAX).get().getFloatValue() : builder.max);
-        mMin = (attrs.getAttr(TSB_MIN).isPresent() ? attrs.getAttr(TSB_MIN).get().getFloatValue() : builder.min);
-        mProgress = (attrs.getAttr(TSB_PROGRESS).isPresent() ? attrs.getAttr(TSB_PROGRESS).get().getFloatValue() : builder.progress);
-        mIsFloatProgress = (attrs.getAttr(TSB_PROGRESS_VALUE_FLOAT).isPresent() ? attrs.getAttr(TSB_PROGRESS_VALUE_FLOAT).get().getBoolValue()
-                : builder.progressValueFloat);
-        mUserSeekable = (attrs.getAttr(TSB_USER_SEEKABLE).isPresent() ? attrs.getAttr(TSB_USER_SEEKABLE).get().getBoolValue()
-                : builder.userSeekable);
-        mClearPadding = (attrs.getAttr(TSB_CLEAR_DEFAULT_PADDING).isPresent() ? attrs.getAttr(TSB_CLEAR_DEFAULT_PADDING).get().getBoolValue()
-                : builder.clearPadding);
-        mOnlyThumbDraggable = (attrs.getAttr(TSB_ONLY_THUMB_DRAGGABLE).isPresent() ? attrs.getAttr(TSB_ONLY_THUMB_DRAGGABLE).get().getBoolValue()
-                : builder.onlyThumbDraggable);
-        mSeekSmoothly = (attrs.getAttr(TSB_SEEK_SMOOTHLY).isPresent() ? attrs.getAttr(TSB_SEEK_SMOOTHLY).get().getBoolValue()
-                : builder.seekSmoothly);
-        mR2L = (attrs.getAttr(TSB_R2L).isPresent() ? attrs.getAttr(TSB_R2L).get().getBoolValue() : builder.r2l);
+        setSeekBarCustomAttributes(attrs, builder);
 
         //track
-        mBackgroundTrackSize = (attrs.getAttr(TSB_TRACK_BACKGROUND_SIZE).isPresent() ? attrs.getAttr(TSB_TRACK_BACKGROUND_SIZE).get().getDimensionValue()
-                : builder.trackBackgroundSize);
-        mProgressTrackSize = (attrs.getAttr(TSB_TRACK_PROGRESS_SIZE).isPresent() ? attrs.getAttr(TSB_TRACK_PROGRESS_SIZE).get().getDimensionValue()
-                : builder.trackProgressSize);
-
-        mBackgroundTrackColor = (attrs.getAttr(TSB_TRACK_BACKGROUND_COLOR).isPresent() ? attrs.getAttr(TSB_TRACK_BACKGROUND_COLOR).get().getColorValue()
-                : builder.trackBackgroundColor);
-        mProgressTrackColor = (attrs.getAttr(TSB_TRACK_PROGRESS_COLOR).isPresent() ? attrs.getAttr(TSB_TRACK_PROGRESS_COLOR).get().getColorValue()
-                : builder.trackProgressColor);
-        mTrackRoundedCorners = (attrs.getAttr(TSB_TRACK_ROUNDED_CORNERS).isPresent() ? attrs.getAttr(TSB_TRACK_ROUNDED_CORNERS).get().getBoolValue()
-                : builder.trackRoundedCorners);
+        setTrackCustomAttributes(attrs, builder);
 
         //thumb
-        mThumbSize = (attrs.getAttr(TSB_THUMB_SIZE).isPresent() ? attrs.getAttr(TSB_THUMB_SIZE).get().getDimensionValue()
-                : builder.thumbSize);
-        mThumbDrawable = (attrs.getAttr(TSB_THUMB_DRAWABLE).isPresent() ? attrs.getAttr(TSB_THUMB_DRAWABLE).get().getElement() : builder.thumbDrawable);
-        String thumbDrawableString = (attrs.getAttr(TSB_THUMB_DRAWABLE_SELECTOR).isPresent() ? attrs.getAttr(TSB_THUMB_DRAWABLE_SELECTOR).get().getStringValue() : "");
+        setThumbCustomAttributes(context, attrs, builder);
+
+        //thumb text
+        setThumbTextCustomAttributes(attrs, builder);
+
+        //tickMarks
+        setTickMarksCustomAttributes(context, attrs, builder);
+
+        //tickTexts
+        setTickTextCustomAttributes(attrs, builder);
+    }
+
+    private void setSeekBarCustomAttributes(AttrSet attrs, Builder builder) {
+        mMax = (attrs.getAttr(TSB_MAX).isPresent() ? attrs.getAttr(TSB_MAX).get().getFloatValue() : builder.max);
+        mMin = (attrs.getAttr(TSB_MIN).isPresent() ? attrs.getAttr(TSB_MIN).get().getFloatValue() : builder.min);
+        mProgress = (attrs.getAttr(TSB_PROGRESS).isPresent() ? attrs.getAttr(TSB_PROGRESS).get().getFloatValue()
+                : builder.progress);
+        mIsFloatProgress = (attrs.getAttr(TSB_PROGRESS_VALUE_FLOAT).isPresent()
+                ? attrs.getAttr(TSB_PROGRESS_VALUE_FLOAT).get().getBoolValue() : builder.progressValueFloat);
+        mUserSeekable = (attrs.getAttr(TSB_USER_SEEKABLE).isPresent()
+                ? attrs.getAttr(TSB_USER_SEEKABLE).get().getBoolValue() : builder.userSeekable);
+        mClearPadding = (attrs.getAttr(TSB_CLEAR_DEFAULT_PADDING).isPresent()
+                ? attrs.getAttr(TSB_CLEAR_DEFAULT_PADDING).get().getBoolValue() : builder.clearPadding);
+        mOnlyThumbDraggable = (attrs.getAttr(TSB_ONLY_THUMB_DRAGGABLE).isPresent()
+                ? attrs.getAttr(TSB_ONLY_THUMB_DRAGGABLE).get().getBoolValue() : builder.onlyThumbDraggable);
+        mSeekSmoothly = (attrs.getAttr(TSB_SEEK_SMOOTHLY).isPresent()
+                ? attrs.getAttr(TSB_SEEK_SMOOTHLY).get().getBoolValue() : builder.seekSmoothly);
+        mR2L = (attrs.getAttr(TSB_R2L).isPresent() ? attrs.getAttr(TSB_R2L).get().getBoolValue() : builder.r2l);
+    }
+
+    private void setTrackCustomAttributes(AttrSet attrs, Builder builder) {
+        mBackgroundTrackSize = (attrs.getAttr(TSB_TRACK_BACKGROUND_SIZE).isPresent()
+                ? attrs.getAttr(TSB_TRACK_BACKGROUND_SIZE).get().getDimensionValue() : builder.trackBackgroundSize);
+        mProgressTrackSize = (attrs.getAttr(TSB_TRACK_PROGRESS_SIZE).isPresent()
+                ? attrs.getAttr(TSB_TRACK_PROGRESS_SIZE).get().getDimensionValue() : builder.trackProgressSize);
+        mBackgroundTrackColor = (attrs.getAttr(TSB_TRACK_BACKGROUND_COLOR).isPresent()
+                ? attrs.getAttr(TSB_TRACK_BACKGROUND_COLOR).get().getColorValue() : builder.trackBackgroundColor);
+        mProgressTrackColor = (attrs.getAttr(TSB_TRACK_PROGRESS_COLOR).isPresent()
+                ? attrs.getAttr(TSB_TRACK_PROGRESS_COLOR).get().getColorValue() : builder.trackProgressColor);
+        mTrackRoundedCorners = (attrs.getAttr(TSB_TRACK_ROUNDED_CORNERS).isPresent()
+                ? attrs.getAttr(TSB_TRACK_ROUNDED_CORNERS).get().getBoolValue() : builder.trackRoundedCorners);
+    }
+
+    private void setThumbCustomAttributes(Context context, AttrSet attrs, Builder builder) {
+        mThumbSize = (attrs.getAttr(TSB_THUMB_SIZE).isPresent()
+                ? attrs.getAttr(TSB_THUMB_SIZE).get().getDimensionValue() : builder.thumbSize);
+        mThumbDrawable = (attrs.getAttr(TSB_THUMB_DRAWABLE).isPresent()
+                ? attrs.getAttr(TSB_THUMB_DRAWABLE).get().getElement() : builder.thumbDrawable);
+        String thumbDrawableString = (attrs.getAttr(TSB_THUMB_DRAWABLE_SELECTOR).isPresent()
+                ? attrs.getAttr(TSB_THUMB_DRAWABLE_SELECTOR).get().getStringValue() : "");
         if (!TextTool.isNullOrEmpty(thumbDrawableString) && thumbDrawableString.contains("selector")) {
             mThumbDrawable = StateElementUtil.initThumbDrawableState(context);
         }
@@ -357,49 +382,53 @@ public class TickSeekBar extends Component implements Component.DrawTask, Compon
         if (attrs.getAttr(TSB_THUMB_COLOR_SELECTOR).isPresent()) {
             initThumbColor(StateElementUtil.initThumbColorState(context), builder.thumbColor);
         }
-        mAdjustAuto = (attrs.getAttr(TSB_THUMB_ADJUST_AUTO).isPresent() ? attrs.getAttr(TSB_THUMB_ADJUST_AUTO).get().getBoolValue()
-                : builder.thumbAutoAdjust);
+        mAdjustAuto = (attrs.getAttr(TSB_THUMB_ADJUST_AUTO).isPresent()
+                ? attrs.getAttr(TSB_THUMB_ADJUST_AUTO).get().getBoolValue() : builder.thumbAutoAdjust);
+    }
 
-        //thumb text
-        String thumbTextShowPosString = (attrs.getAttr(TSB_SHOW_THUMB_TEXT).isPresent() ? attrs.getAttr(TSB_SHOW_THUMB_TEXT).get().getStringValue()
-                : "None");
+    private void setThumbTextCustomAttributes(AttrSet attrs, Builder builder) {
+        String thumbTextShowPosString = (attrs.getAttr(TSB_SHOW_THUMB_TEXT).isPresent()
+                ? attrs.getAttr(TSB_SHOW_THUMB_TEXT).get().getStringValue() : "None");
         setThumbTextShowPos(thumbTextShowPosString);
-        mThumbTextColor = (attrs.getAttr(TSB_THUMB_TEXT_COLOR).isPresent() ? attrs.getAttr(TSB_THUMB_TEXT_COLOR).get().getColorValue()
-                : builder.thumbTextColor);
+        mThumbTextColor = (attrs.getAttr(TSB_THUMB_TEXT_COLOR).isPresent()
+                ? attrs.getAttr(TSB_THUMB_TEXT_COLOR).get().getColorValue() : builder.thumbTextColor);
         setThumbTextColor(mThumbTextColor);
+    }
 
-        //tickMarks
-        mTicksCount = (attrs.getAttr(TSB_TICKS_COUNT).isPresent() ? attrs.getAttr(TSB_TICKS_COUNT).get().getIntegerValue()
-                : builder.tickCount);
+    private void setTickMarksCustomAttributes(Context context, AttrSet attrs, Builder builder) {
+        mTicksCount = (attrs.getAttr(TSB_TICKS_COUNT).isPresent()
+                ? attrs.getAttr(TSB_TICKS_COUNT).get().getIntegerValue() : builder.tickCount);
         if (attrs.getAttr(TSB_SHOW_TICK_MARKS_TYPE).isPresent()) {
             setTickMarksType(attrs.getAttr(TSB_SHOW_TICK_MARKS_TYPE).get().getStringValue());
         }
-        mTickMarksSize = (attrs.getAttr(TSB_TICK_MARKS_SIZE).isPresent() ? attrs.getAttr(TSB_TICK_MARKS_SIZE).get().getDimensionValue()
-                : builder.tickMarksSize);
+        mTickMarksSize = (attrs.getAttr(TSB_TICK_MARKS_SIZE).isPresent()
+                ? attrs.getAttr(TSB_TICK_MARKS_SIZE).get().getDimensionValue() : builder.tickMarksSize);
         if (attrs.getAttr(TSB_TICK_MARKS_COLOR).isPresent()) {
             setTickMarksColor(attrs.getAttr(TSB_TICK_MARKS_COLOR).get().getColorValue());
         }
         if (attrs.getAttr(TSB_TICK_MARKS_COLOR_SELECTOR).isPresent()) {
-            initTickMarksColor((StateElement) attrs.getAttr(TSB_TICK_MARKS_COLOR_SELECTOR).get().getElement(), builder.tickMarksColor);
+            initTickMarksColor((StateElement) attrs.getAttr(TSB_TICK_MARKS_COLOR_SELECTOR).get().getElement(),
+                    builder.tickMarksColor);
         }
-        mTickMarksDrawable = (attrs.getAttr(TSB_TICK_MARKS_DRAWABLE).isPresent() ? attrs.getAttr(TSB_TICK_MARKS_DRAWABLE).get().getElement()
-                : builder.tickMarksDrawable);
-        String tickMarksDrawableString = (attrs.getAttr(TSB_TICK_MARKS_DRAWABLE_SELECTOR).isPresent() ? attrs.getAttr(TSB_TICK_MARKS_DRAWABLE_SELECTOR).get().getStringValue()
-                : "");
+        mTickMarksDrawable = (attrs.getAttr(TSB_TICK_MARKS_DRAWABLE).isPresent()
+                ? attrs.getAttr(TSB_TICK_MARKS_DRAWABLE).get().getElement() : builder.tickMarksDrawable);
+        String tickMarksDrawableString = (attrs.getAttr(TSB_TICK_MARKS_DRAWABLE_SELECTOR).isPresent()
+                ? attrs.getAttr(TSB_TICK_MARKS_DRAWABLE_SELECTOR).get().getStringValue() : "");
         if (!TextTool.isNullOrEmpty(tickMarksDrawableString) && tickMarksDrawableString.contains("selector")) {
             mTickMarksDrawable = StateElementUtil.initTickMarksDrawableState(context);
         }
-        mTickMarksSweptHide = (attrs.getAttr(TSB_TICK_MARKS_SWEPT_HIDE).isPresent() ? attrs.getAttr(TSB_TICK_MARKS_SWEPT_HIDE).get().getBoolValue()
-                : builder.tickMarksSweptHide);
-        mTickMarksEndsHide = (attrs.getAttr(TSB_TICK_MARKS_ENDS_HIDE).isPresent() ? attrs.getAttr(TSB_TICK_MARKS_ENDS_HIDE).get().getBoolValue()
-                : builder.tickMarksEndsHide);
+        mTickMarksSweptHide = (attrs.getAttr(TSB_TICK_MARKS_SWEPT_HIDE).isPresent()
+                ? attrs.getAttr(TSB_TICK_MARKS_SWEPT_HIDE).get().getBoolValue() : builder.tickMarksSweptHide);
+        mTickMarksEndsHide = (attrs.getAttr(TSB_TICK_MARKS_ENDS_HIDE).isPresent()
+                ? attrs.getAttr(TSB_TICK_MARKS_ENDS_HIDE).get().getBoolValue() : builder.tickMarksEndsHide);
+    }
 
-        //tickTexts
-        String tickTextsPositionString = (attrs.getAttr(TSB_SHOW_TICK_TEXTS).isPresent() ? attrs.getAttr(TSB_SHOW_TICK_TEXTS).get().getStringValue()
-                : "none");
+    private void setTickTextCustomAttributes(AttrSet attrs, Builder builder) {
+        String tickTextsPositionString = (attrs.getAttr(TSB_SHOW_TICK_TEXTS).isPresent()
+                ? attrs.getAttr(TSB_SHOW_TICK_TEXTS).get().getStringValue() : "none");
         setTickTextShowPos(tickTextsPositionString);
-        mTickTextsSize = (attrs.getAttr(TSB_TICK_TEXTS_SIZE).isPresent() ? attrs.getAttr(TSB_TICK_TEXTS_SIZE).get().getDimensionValue()
-                : builder.tickTextsSize);
+        mTickTextsSize = (attrs.getAttr(TSB_TICK_TEXTS_SIZE).isPresent()
+                ? attrs.getAttr(TSB_TICK_TEXTS_SIZE).get().getDimensionValue() : builder.tickTextsSize);
         if (attrs.getAttr(TSB_TICK_TEXTS_COLOR).isPresent()) {
             setTickTextsColor(attrs.getAttr(TSB_TICK_TEXTS_COLOR).get().getColorValue());
         }
@@ -424,7 +453,8 @@ public class TickSeekBar extends Component implements Component.DrawTask, Compon
         } else if (customArrayValue.contains("irregular_length_6")) {
             mTickTextsCustomArray = getContext().getStringArray(ResourceTable.Strarray_irregular_length_6);
         } else if (customArrayValue.contains("small_normal_middle_large_length_7")) {
-            mTickTextsCustomArray = getContext().getStringArray(ResourceTable.Strarray_small_normal_middle_large_length_7);
+            mTickTextsCustomArray = getContext()
+                    .getStringArray(ResourceTable.Strarray_small_normal_middle_large_length_7);
         }
     }
 
@@ -553,7 +583,8 @@ public class TickSeekBar extends Component implements Component.DrawTask, Compon
     private void collectTicksInfo() {
         LogUtil.info(TAG, "collectTicksInfo() begin");
         if (mTicksCount < 0 || mTicksCount > TickSeekBarConstants.MAX_TICK_COUNT) {
-            throw new IllegalArgumentException("the Argument: TICK COUNT must be limited between (0-50), Now is " + mTicksCount);
+            throw new IllegalArgumentException("the Argument: TICK COUNT must be limited between (0-50), Now is "
+                    + mTicksCount);
         }
         if (mTicksCount != 0) {
             mTickMarksX = new float[mTicksCount];
@@ -574,7 +605,8 @@ public class TickSeekBar extends Component implements Component.DrawTask, Compon
         if (mR2L) {
             mBackgroundTrack.left = mPaddingLeft;
             if (hasAboveText()) {
-                mBackgroundTrack.top = mPaddingTop + mThumbTouchRadius + mDefaultTickTextsHeight + SizeUtils.dp2px(mContext, TickSeekBarConstants.BACKGROUND_TRACK_DP_VALUE);
+                mBackgroundTrack.top = mPaddingTop + mThumbTouchRadius + mDefaultTickTextsHeight
+                        + SizeUtils.dp2px(mContext, TickSeekBarConstants.BACKGROUND_TRACK_DP_VALUE);
             } else {
                 mBackgroundTrack.top = mPaddingTop + mThumbTouchRadius;
             }
@@ -587,7 +619,8 @@ public class TickSeekBar extends Component implements Component.DrawTask, Compon
         } else {
             mProgressTrack.left = mPaddingLeft;
             if (hasAboveText()) {
-                mProgressTrack.top = mPaddingTop + mThumbTouchRadius + mDefaultTickTextsHeight + SizeUtils.dp2px(mContext, TickSeekBarConstants.PROGRESS_TRACK_DP_VALUE);
+                mProgressTrack.top = mPaddingTop + mThumbTouchRadius + mDefaultTickTextsHeight
+                        + SizeUtils.dp2px(mContext, TickSeekBarConstants.PROGRESS_TRACK_DP_VALUE);
             } else {
                 mProgressTrack.top = mPaddingTop + mThumbTouchRadius;
             }
@@ -618,7 +651,8 @@ public class TickSeekBar extends Component implements Component.DrawTask, Compon
             initTextPaint();
             mTextPaint.setFont(mTextFont);
             mRect = mTextPaint.getTextBounds("j");
-            mTickTextsHeight = mRect.getHeight() + SizeUtils.dp2px(mContext, TickSeekBarConstants.TICK_TEXTS_HEIGHT_DP_VALUE);
+            mTickTextsHeight = mRect.getHeight() + SizeUtils.dp2px(mContext,
+                    TickSeekBarConstants.TICK_TEXTS_HEIGHT_DP_VALUE);
         }
         LogUtil.info(TAG, "measureTickTextsBonds() end");
     }
@@ -717,18 +751,26 @@ public class TickSeekBar extends Component implements Component.DrawTask, Compon
             mDefaultTickTextsHeight = mRect.getHeight();
             if (isAboveBelowText()) {
                 if (mTickTextsPosition == TextPosition.BELOW) {
-                    mThumbTextY = mPaddingTop + (float) Math.round(mDefaultTickTextsHeight - mTextPaint.descent()) + SizeUtils.dp2px(mContext, TickSeekBarConstants.THUMB_TEXT_Y_DP_VALUE);
-                    mTickTextY = mTickTextsHeight + mPaddingTop + mCustomDrawableMaxHeight + Math.round(mDefaultTickTextsHeight - mTextPaint.descent()) + SizeUtils.dp2px(mContext, TickSeekBarConstants.TICK_TEXT_Y_DP_VALUE);
+                    mThumbTextY = mPaddingTop + (float) Math.round(mDefaultTickTextsHeight - mTextPaint.descent())
+                            + SizeUtils.dp2px(mContext, TickSeekBarConstants.THUMB_TEXT_Y_DP_VALUE);
+                    mTickTextY = mTickTextsHeight + mPaddingTop + mCustomDrawableMaxHeight
+                            + Math.round(mDefaultTickTextsHeight - mTextPaint.descent()) + SizeUtils.dp2px(mContext,
+                            TickSeekBarConstants.TICK_TEXT_Y_DP_VALUE);
                 } else {
-                    mTickTextY = mPaddingTop + (float) Math.round(mDefaultTickTextsHeight - mTextPaint.descent()) + SizeUtils.dp2px(mContext, TickSeekBarConstants.TICK_TEXT_Y_DP_VALUE);
-                    mThumbTextY = mTickTextsHeight + mPaddingTop + mCustomDrawableMaxHeight + Math.round(mDefaultTickTextsHeight - mTextPaint.descent()) + SizeUtils.dp2px(mContext, TickSeekBarConstants.THUMB_TEXT_Y_DP_VALUE);
+                    mTickTextY = mPaddingTop + (float) Math.round(mDefaultTickTextsHeight - mTextPaint.descent())
+                            + SizeUtils.dp2px(mContext, TickSeekBarConstants.TICK_TEXT_Y_DP_VALUE);
+                    mThumbTextY = mTickTextsHeight + mPaddingTop + mCustomDrawableMaxHeight
+                            + Math.round(mDefaultTickTextsHeight - mTextPaint.descent()) + SizeUtils.dp2px(mContext,
+                            TickSeekBarConstants.THUMB_TEXT_Y_DP_VALUE);
                 }
                 return;
             }
             if (hasBelowText()) {
-                mTickTextY = mPaddingTop + mCustomDrawableMaxHeight + Math.round(mDefaultTickTextsHeight - mTextPaint.descent()) + SizeUtils.dp2px(mContext, TickSeekBarConstants.TICK_TEXT_Y_DP_VALUE);
+                mTickTextY = mPaddingTop + mCustomDrawableMaxHeight + Math.round(mDefaultTickTextsHeight
+                        - mTextPaint.descent()) + SizeUtils.dp2px(mContext, TickSeekBarConstants.TICK_TEXT_Y_DP_VALUE);
             } else if (hasAboveText()) {
-                mTickTextY = mPaddingTop + (float) Math.round(mDefaultTickTextsHeight - mTextPaint.descent()) + SizeUtils.dp2px(mContext, TickSeekBarConstants.TICK_TEXT_Y_DP_VALUE);
+                mTickTextY = mPaddingTop + (float) Math.round(mDefaultTickTextsHeight - mTextPaint.descent())
+                        + SizeUtils.dp2px(mContext, TickSeekBarConstants.TICK_TEXT_Y_DP_VALUE);
             }
             mThumbTextY = mTickTextY;
         }
@@ -791,25 +833,8 @@ public class TickSeekBar extends Component implements Component.DrawTask, Compon
                     mHoveredTextColor = mUnselectedTextsColor;
                 }
             }
-        } else if (stateCount == TickSeekBarConstants.INDEX_VALUE_THREE) {
-            for (int i = 0; i < stateCount; i++) {
-                int[] stateSet = colorStateList.getStateSet(i);
-                if (stateSet.length > 0 && stateSet[0] == COMPONENT_STATE_SELECTED) {
-                    mSelectedTextsColor = new Color(getContext().getColor(ResourceTable.Color_colorAccent));
-                    mUnselectedTextsColor = new Color(getContext().getColor(ResourceTable.Color_color_gray));
-                    mHoveredTextColor = mUnselectedTextsColor;
-                } else if (stateSet.length > 1 && stateSet[1] == COMPONENT_STATE_HOVERED) {
-                    mSelectedTextsColor = new Color(getContext().getColor(ResourceTable.Color_colorAccent));
-                    mUnselectedTextsColor = new Color(getContext().getColor(ResourceTable.Color_color_gray));
-                    mHoveredTextColor = new Color(getContext().getColor(ResourceTable.Color_color_blue));
-                } else {
-                    mSelectedTextsColor = new Color(getContext().getColor(ResourceTable.Color_colorAccent));
-                    mUnselectedTextsColor = new Color(getContext().getColor(ResourceTable.Color_color_gray));
-                    mHoveredTextColor = mUnselectedTextsColor;
-                }
-            }
         } else {
-            throw new IllegalArgumentException("the selector color file you set for the argument: isb_tick_marks_color is in wrong format.");
+            LogUtil.info(TAG, "color state not matched");
         }
         LogUtil.info(TAG, "initTickTextsColor() end");
     }
@@ -848,30 +873,34 @@ public class TickSeekBar extends Component implements Component.DrawTask, Compon
             mThumbColor = new Color(getContext().getColor(ResourceTable.Color_colorAccent));
             mPressedThumbColor = mThumbColor;
         } else if (stateCount == 2) {
-            for (int i = 0; i < stateCount; i++) {
-                int[] stateSet = colorStateList.getStateSet(i);
-                if (stateSet.length == 0) { //didn't have state,so just get color.
-                    ShapeElement element = (ShapeElement) colorStateList.getStateElement(i);
-                    RgbColor[] rgbColors = element.getRgbColors();
-                    if (rgbColors != null && rgbColors.length > 0) {
-                        mThumbColor = new Color(rgbColors[0].asRgbaInt());
-                    }
-                    continue;
-                }
-                switch (stateSet[0]) {
-                    case COMPONENT_STATE_PRESSED:
-                        ShapeElement element = (ShapeElement) colorStateList.getStateElement(i);
-                        RgbColor[] rgbColors = element.getRgbColors();
-                        if (rgbColors != null && rgbColors.length > 0) {
-                            mPressedThumbColor = new Color(rgbColors[0].asRgbaInt());
-                        }
-                        break;
-                    default:
-                }
-            }
+            setThumbColorValues(colorStateList, stateCount);
         } else {
             //the color selector file was set by a wrong format , please see above to correct.
             throw new IllegalArgumentException("the selector color file you set for the argument: isb_thumb_color is in wrong format.");
+        }
+    }
+
+    private void setThumbColorValues(StateElement colorStateList, int stateCount) {
+        for (int i = 0; i < stateCount; i++) {
+            int[] stateSet = colorStateList.getStateSet(i);
+            if (stateSet.length == 0) { //didn't have state,so just get color.
+                ShapeElement element = (ShapeElement) colorStateList.getStateElement(i);
+                RgbColor[] rgbColors = element.getRgbColors();
+                if (rgbColors != null && rgbColors.length > 0) {
+                    mThumbColor = new Color(rgbColors[0].asRgbaInt());
+                }
+                continue;
+            }
+            switch (stateSet[0]) {
+                case COMPONENT_STATE_PRESSED:
+                    ShapeElement element = (ShapeElement) colorStateList.getStateElement(i);
+                    RgbColor[] rgbColors = element.getRgbColors();
+                    if (rgbColors != null && rgbColors.length > 0) {
+                        mPressedThumbColor = new Color(rgbColors[0].asRgbaInt());
+                    }
+                    break;
+                default:
+            }
         }
     }
 
@@ -899,30 +928,7 @@ public class TickSeekBar extends Component implements Component.DrawTask, Compon
         }
         if (mThumbDrawable instanceof StateElement) {
             try {
-                StateElement listDrawable = (StateElement) mThumbDrawable;
-                int stateCount = listDrawable.getStateCount();
-                if (stateCount == 2) {
-                    for (int i = 0; i < stateCount; i++) {
-                        int[] stateSet = listDrawable.getStateSet(i);
-                        if (stateSet.length > 0) {
-                            if (stateSet[0] == COMPONENT_STATE_PRESSED) {
-                                PixelMapElement stateDrawable = (PixelMapElement) listDrawable.getStateElement(i);
-                                mPressedThumbPixelMap = stateDrawable.getPixelMap();
-                            } else {
-
-                                //please check your selector drawable's format, please see above to correct.
-                                throw new IllegalArgumentException("the state of the selector thumb drawable is wrong!");
-                            }
-                        } else {
-                            PixelMapElement stateDrawable = (PixelMapElement) listDrawable.getStateElement(i);
-                            mThumbPixelMap = stateDrawable.getPixelMap();
-                        }
-                    }
-                } else {
-
-                    //please check your selector drawable's format, please see above to correct.
-                    throw new IllegalArgumentException("the format of the selector thumb drawable is wrong!");
-                }
+                setThumbPixelMapValues();
             } catch (IllegalArgumentException e) {
                 mThumbPixelMap = getPixelMapFromDrawable(mThumbDrawable, true);
                 mPressedThumbPixelMap = mThumbPixelMap;
@@ -932,6 +938,33 @@ public class TickSeekBar extends Component implements Component.DrawTask, Compon
             mPressedThumbPixelMap = mThumbPixelMap;
         }
         LogUtil.info(TAG, "initThumbPixelMap() end");
+    }
+
+    private void setThumbPixelMapValues() {
+        StateElement listDrawable = (StateElement) mThumbDrawable;
+        int stateCount = listDrawable.getStateCount();
+        if (stateCount == 2) {
+            for (int i = 0; i < stateCount; i++) {
+                int[] stateSet = listDrawable.getStateSet(i);
+                if (stateSet.length > 0) {
+                    if (stateSet[0] == COMPONENT_STATE_PRESSED) {
+                        PixelMapElement stateDrawable = (PixelMapElement) listDrawable.getStateElement(i);
+                        mPressedThumbPixelMap = stateDrawable.getPixelMap();
+                    } else {
+
+                        //please check your selector drawable's format, please see above to correct.
+                        throw new IllegalArgumentException("the state of the selector thumb drawable is wrong!");
+                    }
+                } else {
+                    PixelMapElement stateDrawable = (PixelMapElement) listDrawable.getStateElement(i);
+                    mThumbPixelMap = stateDrawable.getPixelMap();
+                }
+            }
+        } else {
+
+            //please check your selector drawable's format, please see above to correct.
+            throw new IllegalArgumentException("the format of the selector thumb drawable is wrong!");
+        }
     }
 
     /**
@@ -958,22 +991,7 @@ public class TickSeekBar extends Component implements Component.DrawTask, Compon
             try {
                 int stateCount = listDrawable.getStateCount();
                 if (stateCount == 2) {
-                    for (int i = 0; i < stateCount; i++) {
-                        int[] stateSet = listDrawable.getStateSet(i);
-                        if (stateSet.length > 0) {
-                            if (stateSet[0] == COMPONENT_STATE_SELECTED || stateSet[0] == COMPONENT_STATE_FOCUSED) {
-                                PixelMapElement stateDrawable = (PixelMapElement) listDrawable.getStateElement(i);
-                                mSelectTickMarksPixelMap = stateDrawable.getPixelMap();
-                            } else {
-
-                                //please check your selector drawable's format, please see above to correct.
-                                throw new IllegalArgumentException("the state of the selector TickMarks drawable is wrong!");
-                            }
-                        } else {
-                            PixelMapElement stateDrawable = (PixelMapElement) listDrawable.getStateElement(i);
-                            mUnselectedTickMarksPixelMap = stateDrawable.getPixelMap();
-                        }
-                    }
+                    setTickMarksPixelMapValues(listDrawable, stateCount);
                 } else {
 
                     //please check your selector drawable's format, please see above to correct.
@@ -988,6 +1006,25 @@ public class TickSeekBar extends Component implements Component.DrawTask, Compon
             mSelectTickMarksPixelMap = mUnselectedTickMarksPixelMap;
         }
         LogUtil.info(TAG, "initTickMarksPixelMap() end");
+    }
+
+    private void setTickMarksPixelMapValues(StateElement listDrawable, int stateCount) {
+        for (int i = 0; i < stateCount; i++) {
+            int[] stateSet = listDrawable.getStateSet(i);
+            if (stateSet.length > 0) {
+                if (stateSet[0] == COMPONENT_STATE_SELECTED || stateSet[0] == COMPONENT_STATE_FOCUSED) {
+                    PixelMapElement stateDrawable = (PixelMapElement) listDrawable.getStateElement(i);
+                    mSelectTickMarksPixelMap = stateDrawable.getPixelMap();
+                } else {
+
+                    //please check your selector drawable's format, please see above to correct.
+                    throw new IllegalArgumentException("the state of the selector TickMarks drawable is wrong!");
+                }
+            } else {
+                PixelMapElement stateDrawable = (PixelMapElement) listDrawable.getStateElement(i);
+                mUnselectedTickMarksPixelMap = stateDrawable.getPixelMap();
+            }
+        }
     }
 
     /**
@@ -1029,22 +1066,26 @@ public class TickSeekBar extends Component implements Component.DrawTask, Compon
             mSelectedTickMarksColor = new Color(getContext().getColor(ResourceTable.Color_colorPrimary));
             mUnSelectedTickMarksColor = new Color(getContext().getColor(ResourceTable.Color_color_gray));
         } else if (stateCount == 2) {
-            for (int i = 0; i < stateCount; i++) {
-                int[] stateSet = colorStateList.getStateSet(i);
-                ShapeElement shapeElement = (ShapeElement) colorStateList.getStateElement(i);
-                if (stateSet.length > 0 && stateSet[0] == COMPONENT_STATE_SELECTED) {
-                    RgbColor[] rgbColors = shapeElement.getRgbColors();
-                    if (rgbColors != null && rgbColors.length > 0) {
-                        mSelectedTickMarksColor = new Color(rgbColors[0].asRgbaInt());
-                        mUnSelectedTickMarksColor = new Color(getContext().getColor(ResourceTable.Color_color_gray));
-                    }
-                } else {
-                    mUnSelectedTickMarksColor = new Color(getContext().getColor(ResourceTable.Color_color_gray));
-                    mSelectedTickMarksColor = mUnSelectedTickMarksColor;
-                }
-            }
+            setTickMarksColorValues(colorStateList, stateCount);
         }
         LogUtil.info(TAG, "initTickMarksColor(StateElement colorStateList, Color defaultColor)  end");
+    }
+
+    private void setTickMarksColorValues(StateElement colorStateList, int stateCount) {
+        for (int i = 0; i < stateCount; i++) {
+            int[] stateSet = colorStateList.getStateSet(i);
+            ShapeElement shapeElement = (ShapeElement) colorStateList.getStateElement(i);
+            if (stateSet.length > 0 && stateSet[0] == COMPONENT_STATE_SELECTED) {
+                RgbColor[] rgbColors = shapeElement.getRgbColors();
+                if (rgbColors != null && rgbColors.length > 0) {
+                    mSelectedTickMarksColor = new Color(rgbColors[0].asRgbaInt());
+                    mUnSelectedTickMarksColor = new Color(getContext().getColor(ResourceTable.Color_color_gray));
+                }
+            } else {
+                mUnSelectedTickMarksColor = new Color(getContext().getColor(ResourceTable.Color_color_gray));
+                mSelectedTickMarksColor = mUnSelectedTickMarksColor;
+            }
+        }
     }
 
     private PixelMap getPixelMapFromResId(boolean isThumb, boolean isStateChanged) {
@@ -1153,49 +1194,57 @@ public class TickSeekBar extends Component implements Component.DrawTask, Compon
         if (mCustomTrackSectionColorResult) {
             int sectionSize = mTicksCount - 1 > 0 ? mTicksCount - 1 : 1;
             for (int i = 0; i < sectionSize; i++) {
-                if (mR2L) {
-                    mStrokePaint.setColor(mSectionTrackColorArray[sectionSize - i - 1]);
-                } else {
-                    mStrokePaint.setColor(mSectionTrackColorArray[i]);
-                }
-                float thumbPosFloat = getThumbPosOnTickFloat();
-                if (i < thumbPosFloat && thumbPosFloat < (i + 1)) {
-
-                    // the section track include the thumb,
-                    // set the ProgressTrackSize for thumb's left side track ,
-                    // BGTrackSize for the right's.
-                    float thumbCenterX = getThumbCenterX();
-                    mStrokePaint.setStrokeWidth(getLeftSideTrackSize());
-                    canvas.drawLine(mTickMarksX[i], mProgressTrack.top, thumbCenterX, mProgressTrack.bottom, mStrokePaint);
-                    mStrokePaint.setStrokeWidth(getRightSideTrackSize());
-                    canvas.drawLine(thumbCenterX, mProgressTrack.top, mTickMarksX[i + 1], mProgressTrack.bottom, mStrokePaint);
-                } else {
-                    if (i < thumbPosFloat) {
-                        mStrokePaint.setStrokeWidth(getLeftSideTrackSize());
-                    } else {
-                        mStrokePaint.setStrokeWidth(getRightSideTrackSize());
-                    }
-                    canvas.drawLine(mTickMarksX[i], mProgressTrack.top, mTickMarksX[i + 1], mProgressTrack.bottom, mStrokePaint);
-                }
+                drawCustomTrackColors(canvas, sectionSize, i);
             }
         } else {
 
             //draw mProgressArr track
             mStrokePaint.setColor(mProgressTrackColor);
             mStrokePaint.setStrokeWidth(mProgressTrackSize);
-            canvas.drawLine(mProgressTrack.left, mProgressTrack.top, mProgressTrack.right, mProgressTrack.bottom, mStrokePaint);
+            canvas.drawLine(mProgressTrack.left, mProgressTrack.top, mProgressTrack.right, mProgressTrack.bottom,
+                    mStrokePaint);
 
             //draw BG track
             mStrokePaint.setColor(mBackgroundTrackColor);
             mStrokePaint.setStrokeWidth(mBackgroundTrackSize);
-            canvas.drawLine(mBackgroundTrack.left, mBackgroundTrack.top, mBackgroundTrack.right, mBackgroundTrack.bottom, mStrokePaint);
+            canvas.drawLine(mBackgroundTrack.left, mBackgroundTrack.top, mBackgroundTrack.right,
+                    mBackgroundTrack.bottom, mStrokePaint);
         }
         LogUtil.info(TAG, "drawTrack(Canvas canvas)  end");
     }
 
+    private void drawCustomTrackColors(Canvas canvas, int sectionSize, int index) {
+        if (mR2L) {
+            mStrokePaint.setColor(mSectionTrackColorArray[sectionSize - index - 1]);
+        } else {
+            mStrokePaint.setColor(mSectionTrackColorArray[index]);
+        }
+        float thumbPosFloat = getThumbPosOnTickFloat();
+        if (index < thumbPosFloat && thumbPosFloat < (index + 1)) {
+
+            // the section track include the thumb,
+            // set the ProgressTrackSize for thumb's left side track ,
+            // BGTrackSize for the right's.
+            float thumbCenterX = getThumbCenterX();
+            mStrokePaint.setStrokeWidth(getLeftSideTrackSize());
+            canvas.drawLine(mTickMarksX[index], mProgressTrack.top, thumbCenterX, mProgressTrack.bottom, mStrokePaint);
+            mStrokePaint.setStrokeWidth(getRightSideTrackSize());
+            canvas.drawLine(thumbCenterX, mProgressTrack.top, mTickMarksX[index + 1], mProgressTrack.bottom,
+                    mStrokePaint);
+        } else {
+            if (index < thumbPosFloat) {
+                mStrokePaint.setStrokeWidth(getLeftSideTrackSize());
+            } else {
+                mStrokePaint.setStrokeWidth(getRightSideTrackSize());
+            }
+            canvas.drawLine(mTickMarksX[index], mProgressTrack.top, mTickMarksX[index + 1], mProgressTrack.bottom,
+                    mStrokePaint);
+        }
+    }
+
     private void drawTickMarks(Canvas canvas) {
         LogUtil.info(TAG, "drawTickMarks(Canvas canvas)  begin");
-        if (mTicksCount == 0 || (mShowTickMarksType == TickMarkType.NONE && mTickMarksDrawable == null)) {
+        if (checkValidTickMarks()) {
             return;
         }
         float thumbCenterX = getThumbCenterX();
@@ -1210,43 +1259,67 @@ public class TickSeekBar extends Component implements Component.DrawTask, Compon
                 continue;
             }
             float thumbPosFloat = getThumbPosOnTickFloat();
-            if (i <= thumbPosFloat) {
-                mStrokePaint.setColor(getLeftSideTickColor());
-            } else {
-                mStrokePaint.setColor(getRightSideTickColor());
-            }
+            drawLeftRightTickMarksColorValues(thumbPosFloat, i);
             if (mTickMarksDrawable != null) {
-                if (mSelectTickMarksPixelMap == null || mUnselectedTickMarksPixelMap == null) {
-                    initTickMarksPixelMap();
-                }
-                if (mSelectTickMarksPixelMap == null || mUnselectedTickMarksPixelMap == null) {
-
-                    //please check your selector drawable's format and correct.
-                    throw new IllegalArgumentException("the format of the selector TickMarks drawable is wrong!");
-                }
-                if (i <= thumbPosFloat) {
-                    canvas.drawPixelMapHolder(new PixelMapHolder(mSelectTickMarksPixelMap), mTickMarksX[i] - mUnselectedTickMarksPixelMap.getImageInfo().size.width / 2.0f, mProgressTrack.top - mUnselectedTickMarksPixelMap.getImageInfo().size.height / 2.0f, mStrokePaint);
-                } else {
-                    canvas.drawPixelMapHolder(new PixelMapHolder(mUnselectedTickMarksPixelMap), mTickMarksX[i] - mUnselectedTickMarksPixelMap.getImageInfo().size.width / 2.0f, mProgressTrack.top - mUnselectedTickMarksPixelMap.getImageInfo().size.height / 2.0f, mStrokePaint);
-                }
+                drawTickMarksPixelMapValues(canvas, thumbPosFloat, i);
                 continue;
             }
-            if (mShowTickMarksType == TickMarkType.OVAL) {
-                canvas.drawCircle(mTickMarksX[i], mProgressTrack.top, mTickRadius, mStrokePaint);
-            } else if (mShowTickMarksType == TickMarkType.DIVIDER) {
-                float dividerTickHeight;
-                int rectWidth = 1;
-                if (thumbCenterX >= mTickMarksX[i]) {
-                    dividerTickHeight = getLeftSideTrackSize();
-                } else {
-                    dividerTickHeight = getRightSideTrackSize();
-                }
-                canvas.drawRect(mTickMarksX[i] - rectWidth, mProgressTrack.top - dividerTickHeight / 2.0f, mTickMarksX[i] + rectWidth, mProgressTrack.top + dividerTickHeight / 2.0f, mStrokePaint);
-            } else if (mShowTickMarksType == TickMarkType.SQUARE) {
-                canvas.drawRect(mTickMarksX[i] - mTickMarksSize / 2.0f, mProgressTrack.top - mTickMarksSize / 2.0f, mTickMarksX[i] + mTickMarksSize / 2.0f, mProgressTrack.top + mTickMarksSize / 2.0f, mStrokePaint);
-            }
+            drawTickMarksTypeValues(canvas, thumbCenterX, i);
         }
         LogUtil.info(TAG, "drawTickMarks(Canvas canvas)  end");
+    }
+
+    private boolean checkValidTickMarks() {
+        return  (mTicksCount == 0 || (mShowTickMarksType == TickMarkType.NONE && mTickMarksDrawable == null));
+    }
+
+    private void drawLeftRightTickMarksColorValues(float thumbPosFloat, int index) {
+        if (index <= thumbPosFloat) {
+            mStrokePaint.setColor(getLeftSideTickColor());
+        } else {
+            mStrokePaint.setColor(getRightSideTickColor());
+        }
+    }
+
+    private void drawTickMarksPixelMapValues(Canvas canvas, float thumbPosFloat, int index) {
+        if (mSelectTickMarksPixelMap == null || mUnselectedTickMarksPixelMap == null) {
+            initTickMarksPixelMap();
+        }
+        if (mSelectTickMarksPixelMap == null || mUnselectedTickMarksPixelMap == null) {
+
+            //please check your selector drawable's format and correct.
+            throw new IllegalArgumentException("the format of the selector TickMarks drawable is wrong!");
+        }
+        if (index <= thumbPosFloat) {
+            canvas.drawPixelMapHolder(new PixelMapHolder(mSelectTickMarksPixelMap), mTickMarksX[index]
+                    - mUnselectedTickMarksPixelMap.getImageInfo().size.width / 2.0f, mProgressTrack.top
+                    - mUnselectedTickMarksPixelMap.getImageInfo().size.height / 2.0f, mStrokePaint);
+        } else {
+            canvas.drawPixelMapHolder(new PixelMapHolder(mUnselectedTickMarksPixelMap), mTickMarksX[index]
+                    - mUnselectedTickMarksPixelMap.getImageInfo().size.width / 2.0f, mProgressTrack.top
+                    - mUnselectedTickMarksPixelMap.getImageInfo().size.height / 2.0f, mStrokePaint);
+        }
+    }
+
+    private void drawTickMarksTypeValues(Canvas canvas, float thumbCenterX, int index) {
+        if (mShowTickMarksType == TickMarkType.OVAL) {
+            canvas.drawCircle(mTickMarksX[index], mProgressTrack.top, mTickRadius, mStrokePaint);
+        } else if (mShowTickMarksType == TickMarkType.DIVIDER) {
+            float dividerTickHeight;
+            int rectWidth = 1;
+            if (thumbCenterX >= mTickMarksX[index]) {
+                dividerTickHeight = getLeftSideTrackSize();
+            } else {
+                dividerTickHeight = getRightSideTrackSize();
+            }
+            canvas.drawRect(mTickMarksX[index] - rectWidth, mProgressTrack.top - dividerTickHeight / 2.0f,
+                    mTickMarksX[index] + rectWidth, mProgressTrack.top + dividerTickHeight / 2.0f,
+                    mStrokePaint);
+        } else if (mShowTickMarksType == TickMarkType.SQUARE) {
+            canvas.drawRect(mTickMarksX[index] - mTickMarksSize / 2.0f, mProgressTrack.top
+                    - mTickMarksSize / 2.0f, mTickMarksX[index] + mTickMarksSize / 2.0f,
+                    mProgressTrack.top + mTickMarksSize / 2.0f, mStrokePaint);
+        }
     }
 
     private void drawTickTexts(Canvas canvas) {
@@ -1271,47 +1344,62 @@ public class TickSeekBar extends Component implements Component.DrawTask, Compon
                 }
             }
             int index = i;
-            if (mR2L) {
-                index = mTickTextsArr.length - 1 - i;
-            }
-            if (i == 0) {
-                canvas.drawText(mTextPaint, mTickTextsArr[index], mTextCenterX[i] + mTickTextsWidth[index] / 2.0f, mTickTextY);
-            } else if (i == mTickTextsArr.length - 1) {
-                canvas.drawText(mTextPaint, mTickTextsArr[index], mTextCenterX[i] - mTickTextsWidth[index] / 2.0f, mTickTextY);
-            } else {
-                canvas.drawText(mTextPaint, mTickTextsArr[index], mTextCenterX[i], mTickTextY);
-            }
+            drawTickTextColorValues(canvas, index, i);
         }
         LogUtil.info(TAG, "drawTickTexts(Canvas canvas) end");
+    }
+
+    private void drawTickTextColorValues(Canvas canvas, int index, int loopIndex) {
+        if (mR2L) {
+            index = mTickTextsArr.length - 1 - loopIndex;
+        }
+        if (loopIndex == 0) {
+            canvas.drawText(mTextPaint, mTickTextsArr[index], mTextCenterX[loopIndex] + mTickTextsWidth[index]
+                    / 2.0f, mTickTextY);
+        } else if (loopIndex == mTickTextsArr.length - 1) {
+            canvas.drawText(mTextPaint, mTickTextsArr[index], mTextCenterX[loopIndex] - mTickTextsWidth[index]
+                    / 2.0f, mTickTextY);
+        } else {
+            canvas.drawText(mTextPaint, mTickTextsArr[index], mTextCenterX[loopIndex], mTickTextY);
+        }
     }
 
     private void drawThumb(Canvas canvas) {
         LogUtil.info(TAG, "drawThumb(Canvas canvas) begin");
         float thumbCenterX = getThumbCenterX();
         if (mThumbDrawable != null) {
-            if (mThumbPixelMap == null || mPressedThumbPixelMap == null) {
-                initThumbPixelMap();
-            }
-            if (mThumbPixelMap == null || mPressedThumbPixelMap == null) {
-
-                //please check your selector drawable's format and correct.
-                throw new IllegalArgumentException("the format of the selector thumb drawable is wrong!");
-            }
-            mStrokePaint.setAlpha(TickSeekBarConstants.OPACITY_VALUE);
-            if (mIsTouching) {
-                canvas.drawPixelMapHolder(new PixelMapHolder(mPressedThumbPixelMap), thumbCenterX - mPressedThumbPixelMap.getImageInfo().size.width / 2.0f, mProgressTrack.top - mPressedThumbPixelMap.getImageInfo().size.height / 2.0f, mStrokePaint);
-            } else {
-                canvas.drawPixelMapHolder(new PixelMapHolder(mThumbPixelMap), thumbCenterX - mThumbPixelMap.getImageInfo().size.width / 2.0f, mProgressTrack.top - mThumbPixelMap.getImageInfo().size.height / 2.0f, mStrokePaint);
-            }
+            drawThumbDrawable(canvas, thumbCenterX);
         } else {
             if (mIsTouching) {
                 mStrokePaint.setColor(mPressedThumbColor);
             } else {
                 mStrokePaint.setColor(mThumbColor);
             }
-            canvas.drawCircle(thumbCenterX, mProgressTrack.top, mIsTouching ? mThumbTouchRadius : mThumbRadius, mStrokePaint);
+            canvas.drawCircle(thumbCenterX, mProgressTrack.top, mIsTouching ? mThumbTouchRadius : mThumbRadius,
+                    mStrokePaint);
         }
         LogUtil.info(TAG, "drawThumb(Canvas canvas) end");
+    }
+
+    private void drawThumbDrawable(Canvas canvas, float thumbCenterX) {
+        if (mThumbPixelMap == null || mPressedThumbPixelMap == null) {
+            initThumbPixelMap();
+        }
+        if (mThumbPixelMap == null || mPressedThumbPixelMap == null) {
+
+            //please check your selector drawable's format and correct.
+            throw new IllegalArgumentException("the format of the selector thumb drawable is wrong!");
+        }
+        mStrokePaint.setAlpha(TickSeekBarConstants.OPACITY_VALUE);
+        if (mIsTouching) {
+            canvas.drawPixelMapHolder(new PixelMapHolder(mPressedThumbPixelMap), thumbCenterX
+                    - mPressedThumbPixelMap.getImageInfo().size.width / 2.0f, mProgressTrack.top
+                    - mPressedThumbPixelMap.getImageInfo().size.height / 2.0f, mStrokePaint);
+        } else {
+            canvas.drawPixelMapHolder(new PixelMapHolder(mThumbPixelMap), thumbCenterX
+                    - mThumbPixelMap.getImageInfo().size.width / 2.0f, mProgressTrack.top
+                    - mThumbPixelMap.getImageInfo().size.height / 2.0f, mStrokePaint);
+        }
     }
 
     private void drawThumbText(Canvas canvas) {
@@ -1482,13 +1570,24 @@ public class TickSeekBar extends Component implements Component.DrawTask, Compon
         LogUtil.info(TAG, "apply(Builder builder) end");
     }
 
+    /**
+     * get user seekable.
+     *
+     * @return user seekable value
+     */
+    public boolean isUserSeekable() {
+        return mUserSeekable;
+    }
+
     private boolean isTouchSeekBar(float mX, float mY) {
         LogUtil.info(TAG, "isTouchSeekBar(float mX, float mY) begin");
         if (mFaultTolerance == -1) {
             mFaultTolerance = SizeUtils.dp2px(mContext, TickSeekBarConstants.TOUCH_SEEK_BAR_DP_VALUE);
         }
-        boolean inWidthRange = mX >= (mPaddingLeft - 2 * mFaultTolerance) && mX <= (mMeasuredWidth - mPaddingRight + 2 * mFaultTolerance);
-        boolean inHeightRange = mY >= mProgressTrack.top - mThumbTouchRadius - mFaultTolerance && mY <= mProgressTrack.top + mThumbTouchRadius + mFaultTolerance;
+        boolean inWidthRange = mX >= (mPaddingLeft - 2 * mFaultTolerance) && mX <= (mMeasuredWidth - mPaddingRight + 2
+                * mFaultTolerance);
+        boolean inHeightRange = mY >= mProgressTrack.top - mThumbTouchRadius - mFaultTolerance && mY
+                <= mProgressTrack.top + mThumbTouchRadius + mFaultTolerance;
         return inWidthRange && inHeightRange;
     }
 

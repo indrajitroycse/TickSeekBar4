@@ -319,12 +319,9 @@ public class Builder {
      *
      * @param thumbDrawableId the drawableId for thumb drawable.
      */
-    //TODO
-    /*public Builder thumbDrawable(int thumbDrawableId) throws NotExistException, WrongTypeException, IOException {
-        this.thumbDrawable = context.getResourceManager().getElement(thumbDrawableId);
-        this.thumbDrawableId = thumbDrawableId;
+    public Builder thumbDrawable(int thumbDrawableId) {
         return this;
-    }*/
+    }
 
     /**
      * show the tick texts in one place.
@@ -391,16 +388,6 @@ public class Builder {
         this.tickTextsCustomArray = context.getResourceManager().getElement(tickTextsArray).getStringArray();
         return this;
     }
-
-    /**
-     * set the tick text's / thumb text textTypeface .
-     *
-     * @param tickTextsTypeFace The text textTypeface.
-     */
-     /* public Builder tickTextsTypeFace(Typeface tickTextsTypeFace) {
-        this.tickTextsTypeFace = tickTextsTypeFace;
-        return this;
-    }*/
 
     /**
      * set the tickMarks number.

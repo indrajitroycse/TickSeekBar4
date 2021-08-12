@@ -1,10 +1,5 @@
 package com.warkiz.tickseekbar.slice;
 
-import com.warkiz.tickseekbar.OnSeekChangeListener;
-import com.warkiz.tickseekbar.ResourceTable;
-import com.warkiz.tickseekbar.SeekParams;
-import com.warkiz.tickseekbar.TickSeekBar;
-import com.warkiz.tickseekbar.utils.TickSeekBarConstants;
 import ohos.aafwk.ability.fraction.Fraction;
 import ohos.aafwk.content.Intent;
 import ohos.agp.components.Component;
@@ -14,6 +9,11 @@ import ohos.agp.components.Text;
 import ohos.agp.render.layoutboost.LayoutBoost;
 import ohos.agp.utils.Color;
 import ohos.app.Context;
+import com.warkiz.tickseekbar.OnSeekChangeListener;
+import com.warkiz.tickseekbar.ResourceTable;
+import com.warkiz.tickseekbar.SeekParams;
+import com.warkiz.tickseekbar.TickSeekBar;
+import com.warkiz.tickseekbar.utils.TickSeekBarConstants;
 
 /**
  * Discrete Fraction to display Discrete TickSeekBar.
@@ -40,7 +40,8 @@ public class DiscreteFraction extends Fraction {
 
     @Override
     public Component getComponent() {
-        Component component = LayoutBoost.inflate(this.mContext, ResourceTable.Layout_discrete_layout, this.mComponentContainer, false);
+        Component component = LayoutBoost.inflate(this.mContext, ResourceTable.Layout_discrete_layout,
+                this.mComponentContainer, false);
         initView(component);
         return component;
     }
@@ -62,7 +63,8 @@ public class DiscreteFraction extends Fraction {
             colorIntArr[0] = new Color(mContext.getColor(ResourceTable.Color_color_blue));
             colorIntArr[1] = new Color(mContext.getColor(ResourceTable.Color_color_gray));
             colorIntArr[2] = new Color(Color.getIntColor(TickSeekBarConstants.COLOR_ACCENT));
-            colorIntArr[TickSeekBarConstants.INDEX_VALUE_THREE] = new Color(Color.getIntColor(TickSeekBarConstants.COLOR_PRIMARY_DARK_BLUE));
+            colorIntArr[TickSeekBarConstants.INDEX_VALUE_THREE] = new Color(Color
+                    .getIntColor(TickSeekBarConstants.COLOR_PRIMARY_DARK_BLUE));
             return true;    //true if apply color , otherwise no change
         });
 
@@ -73,7 +75,8 @@ public class DiscreteFraction extends Fraction {
         final Text progress = (Text) component.findComponentById(ResourceTable.Id_progress);
         progress.setText(mContext.getString(ResourceTable.String_progress_text) + listenerSeekBar.getProgress());
         final Text progressFloat = (Text) component.findComponentById(ResourceTable.Id_progress_float);
-        progressFloat.setText(mContext.getString(ResourceTable.String_progress_float_text) + listenerSeekBar.getProgressFloat());
+        progressFloat.setText(mContext.getString(ResourceTable.String_progress_float_text)
+                + listenerSeekBar.getProgressFloat());
         final Text fromUser = (Text) component.findComponentById(ResourceTable.Id_from_user);
         fromUser.setText(mContext.getString(ResourceTable.String_from_user_text));
         final Text thumbPosition = (Text) component.findComponentById(ResourceTable.Id_thumb_position);
@@ -86,9 +89,11 @@ public class DiscreteFraction extends Fraction {
                 states.setText(mContext.getString(ResourceTable.String_states_text)
                         + mContext.getString(ResourceTable.String_on_seeking));
                 progress.setText(mContext.getString(ResourceTable.String_progress_text) + seekParams.getProgress());
-                progressFloat.setText(mContext.getString(ResourceTable.String_progress_float_text) + seekParams.getProgressFloat());
+                progressFloat.setText(mContext.getString(ResourceTable.String_progress_float_text)
+                        + seekParams.getProgressFloat());
                 fromUser.setText(mContext.getString(ResourceTable.String_from_user_text) + seekParams.isFromUser());
-                thumbPosition.setText(mContext.getString(ResourceTable.String_thumb_position_text) + seekParams.getThumbPosition());
+                thumbPosition.setText(mContext.getString(ResourceTable.String_thumb_position_text)
+                        + seekParams.getThumbPosition());
                 tickText.setText(mContext.getString(ResourceTable.String_tick_text) + seekParams.getTickText());
             }
 
@@ -97,7 +102,8 @@ public class DiscreteFraction extends Fraction {
                 states.setText(mContext.getString(ResourceTable.String_states_text)
                         + mContext.getString(ResourceTable.String_on_start));
                 progress.setText(mContext.getString(ResourceTable.String_progress_text) + seekBar.getProgress());
-                progressFloat.setText(mContext.getString(ResourceTable.String_progress_float_text) + seekBar.getProgressFloat());
+                progressFloat.setText(mContext.getString(ResourceTable.String_progress_float_text)
+                        + seekBar.getProgressFloat());
                 fromUser.setText(mContext.getString(ResourceTable.String_from_user_text) + "true");
             }
 
@@ -106,7 +112,8 @@ public class DiscreteFraction extends Fraction {
                 states.setText(mContext.getString(ResourceTable.String_states_text)
                         + mContext.getString(ResourceTable.String_on_stop));
                 progress.setText(mContext.getString(ResourceTable.String_progress_text) + seekBar.getProgress());
-                progressFloat.setText(mContext.getString(ResourceTable.String_progress_float_text) + seekBar.getProgressFloat());
+                progressFloat.setText(mContext.getString(ResourceTable.String_progress_float_text)
+                        + seekBar.getProgressFloat());
                 fromUser.setText(mContext.getString(ResourceTable.String_from_user_text) + "false");
             }
         });

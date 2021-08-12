@@ -1,8 +1,5 @@
 package com.warkiz.tickseekbar.slice;
 
-import com.warkiz.tickseekbar.ResourceTable;
-import com.warkiz.tickseekbar.utils.LogUtil;
-import com.warkiz.tickseekbar.utils.TickSeekBarConstants;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.ability.fraction.Fraction;
 import ohos.aafwk.ability.fraction.FractionAbility;
@@ -15,6 +12,9 @@ import ohos.agp.components.PageSliderProvider;
 import ohos.agp.components.TabList;
 import ohos.agp.utils.Color;
 import ohos.agp.window.dialog.ToastDialog;
+import com.warkiz.tickseekbar.ResourceTable;
+import com.warkiz.tickseekbar.utils.LogUtil;
+import com.warkiz.tickseekbar.utils.TickSeekBarConstants;
 
 /**
  * MainAbilitySlice class for TickSeekBar.
@@ -59,7 +59,7 @@ public class MainAbilitySlice extends AbilitySlice {
             @Override
             public void onPageChosen(int itemPos) {
                 selectedPage = itemPos;
-                tabList.selectTabAt(itemPos);
+                tabList.selectTabAt(selectedPage);
                 tabList.setTabTextColors(Color.WHITE.getValue(), getColor(ResourceTable.Color_colorAccent));
             }
         });
@@ -68,7 +68,8 @@ public class MainAbilitySlice extends AbilitySlice {
     private void tabCustom() {
         tabList.setTabMargin(TickSeekBarConstants.TAB_MARGIN);
         tabList.setTabTextSize(TickSeekBarConstants.TAB_TEXT_SIZE);
-        tabList.setPadding(TickSeekBarConstants.TAB_PADDING_VALUE, TickSeekBarConstants.TAB_PADDING_VALUE, TickSeekBarConstants.TAB_PADDING_VALUE, TickSeekBarConstants.TAB_PADDING_VALUE);
+        tabList.setPadding(TickSeekBarConstants.TAB_PADDING_VALUE, TickSeekBarConstants.TAB_PADDING_VALUE,
+                TickSeekBarConstants.TAB_PADDING_VALUE, TickSeekBarConstants.TAB_PADDING_VALUE);
         tabList.selectTabAt(0);
         tabList.setTabTextColors(Color.WHITE.getValue(), getColor(ResourceTable.Color_colorAccent));
         tabList.addTabSelectedListener(new TabList.TabSelectedListener() {
@@ -123,6 +124,7 @@ public class MainAbilitySlice extends AbilitySlice {
          */
         public ViewPagerAdapter(FractionManager fractionManager) {
             this.mFractionManager = fractionManager;
+            mFractionManager.getFractionByTag("");
         }
 
         @Override
