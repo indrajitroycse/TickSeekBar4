@@ -64,7 +64,6 @@ public class PixelMapUtil {
             }
         } catch (IOException e) {
             LogUtil.error(TAG, "get pixelmap failed, read resource bytes failed");
-            return Optional.empty();
         }
         if (bytes != null) {
             ImageSource.SourceOptions srcOpts = new ImageSource.SourceOptions();

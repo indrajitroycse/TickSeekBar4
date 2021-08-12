@@ -1,12 +1,5 @@
 package com.warkiz.tickseekbar.slice;
 
-import com.warkiz.tickseekbar.ResourceTable;
-import com.warkiz.tickseekbar.TextPosition;
-import com.warkiz.tickseekbar.TickMarkType;
-import com.warkiz.tickseekbar.TickSeekBar;
-import com.warkiz.tickseekbar.utils.LogUtil;
-import com.warkiz.tickseekbar.utils.StateElementUtil;
-import com.warkiz.tickseekbar.utils.TickSeekBarConstants;
 import ohos.aafwk.ability.fraction.Fraction;
 import ohos.aafwk.content.Intent;
 import ohos.agp.components.AttrHelper;
@@ -21,6 +14,13 @@ import ohos.app.Context;
 import ohos.global.resource.NotExistException;
 import ohos.global.resource.WrongTypeException;
 import java.io.IOException;
+import com.warkiz.tickseekbar.ResourceTable;
+import com.warkiz.tickseekbar.TextPosition;
+import com.warkiz.tickseekbar.TickMarkType;
+import com.warkiz.tickseekbar.TickSeekBar;
+import com.warkiz.tickseekbar.utils.LogUtil;
+import com.warkiz.tickseekbar.utils.StateElementUtil;
+import com.warkiz.tickseekbar.utils.TickSeekBarConstants;
 
 /**
  * Java Fraction to display Java TickSeekBar.
@@ -257,8 +257,8 @@ public class JavaFraction extends Fraction {
                     .tickMarksSize(TickSeekBarConstants.CUSTOM_DISCRETE_TICK_MARKS_SIZE)
                     .tickTextsSize(TickSeekBarConstants.CUSTOM_TICK_TEXTS_SIZE)
                     .showTickTextsPosition(TextPosition.ABOVE)
-                    .tickTextsColorStateList(StateElementUtil.initTickTextColorState
-                            (TickSeekBarConstants.INDEX_VALUE_THREE))
+                    .tickTextsColorStateList(StateElementUtil.initTickTextColorState(
+                            TickSeekBarConstants.INDEX_VALUE_THREE))
                     .thumbColor(new Color(mContext.getResourceManager().getElement(ResourceTable.Color_color_1)
                             .getColor()))
                     .thumbSize(TickSeekBarConstants.CUSTOM_THUMB_SIZE)
